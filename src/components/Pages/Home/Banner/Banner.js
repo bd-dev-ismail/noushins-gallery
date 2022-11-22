@@ -19,7 +19,6 @@ const Banner = () => {
           className="mySwiper"
           onSlideChange={() => console.log("slide change")}
           onSwiper={(swiper) => console.log(swiper)}
-          
           autoplay
         >
           <SwiperSlide>
@@ -36,7 +35,7 @@ const Banner = () => {
                     Fashion <br /> Changing <br /> Always
                   </h1>
 
-                  <Link to="/services">
+                  <Link to="/shop">
                     <button className="btn btn-primary">Shop Now</button>
                   </Link>
                 </div>
@@ -57,8 +56,8 @@ const Banner = () => {
                     Fashion <br /> Changing <br /> Always
                   </h1>
 
-                  <Link to="/services">
-                    <button className="btn btn-primary">Services</button>
+                  <Link to="/shop">
+                    <button className="btn btn-primary">Shop Now</button>
                   </Link>
                 </div>
               </div>
@@ -78,8 +77,8 @@ const Banner = () => {
                     Fashion <br /> Changing <br /> Always
                   </h1>
 
-                  <Link to="/services">
-                    <button className="btn btn-primary">Services</button>
+                  <Link to="/shop">
+                    <button className="btn btn-primary">Shop Now</button>
                   </Link>
                 </div>
               </div>
