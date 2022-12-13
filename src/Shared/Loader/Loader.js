@@ -1,11 +1,7 @@
 import React from 'react';
 
 const Loader = () => {
-    return (
-        <div>
-            
-        </div>
-    );
+    return <progress className="progress progress-secondary w-56"></progress>;
 };
 
 export default Loader;

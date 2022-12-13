@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
+import Loader from '../../../../Shared/Loader/Loader';
 
 const AddProducts = () => {
-
+  const [loading, setLoading] = useState(false);
   const {
     register,
     handleSubmit,
@@ -14,6 +16,7 @@ const AddProducts = () => {
     },
   });
   const handelAddProduct = (data)=> {
+    setLoading(true);
     const image = data.productImage[0];
   const formData = new FormData();
   formData.append("image", image);
@@ -34,8 +37,8 @@ const AddProducts = () => {
           shipping: data.shipping,
           productSize: data.productSize,
           image: img,
-          desc: data.desc
-        }
+          desc: data.productDesc,
+        };
         fetch("http://localhost:5000/products", {
           method: "POST",
           headers: {
@@ -48,6 +51,9 @@ const AddProducts = () => {
             console.log(data);
             if(data.acknowledged){
               //toast dekaw products added
+              toast.success("Product added Successfully!!");
+              
+              setLoading(false);
             }
           });
       }
@@ -112,10 +118,12 @@ const AddProducts = () => {
                         })}
                         className="select select-bordered w-full max-w-xs"
                       >
-                        <option selected>Small -S</option>
-                        <option>Medium -M</option>
-                        <option>Large -L</option>
-                        <option>Extra Large -XL</option>
+                        <option selected value="Small -S">
+                          Small -S
+                        </option>
+                        <option value="Medium -M">Medium -M</option>
+                        <option vlaue="Large -L">Large -L</option>
+                        <option value="Extra Large -XL">Extra Large -XL</option>
                       </select>
                       {errors.productSize && (
                         <p className="text-red-600 my-2">
@@ -136,7 +144,6 @@ const AddProducts = () => {
                         placeholder="Shipping Cost"
                         className="input input-bordered"
                       />
-                      
                     </div>
                     <div>
                       <label className="label">
@@ -162,13 +169,7 @@ const AddProducts = () => {
                     <label className="label">
                       <span className="label-text">Product Image</span>
                     </label>
-                    <input
-                      {...register("productImage")}
-                      type="file"
-                      
-                      id=""
-                    />
-                   
+                    <input {...register("productImage")} type="file" id="" />
                   </div>
                   <div className="form-control">
                     <label className="label">
@@ -190,7 +191,7 @@ const AddProducts = () => {
                   </div>
                   <div className="form-control mt-6">
                     <button type="submit" className="btn btn-primary">
-                      Upload Product
+                     {loading ? <Loader/> : ' Upload Product'}
                     </button>
                   </div>
                 </form>
